@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Adhoc_Adobe_Library_3_5</name>
+    </assembly>
+    <members>
+        <member name="T:Adhoc_Adobe_Library_3_5.PDFDoc">
+            <summary>
+            custom class for opening, saving, merging, and splitting a specified PDF document
+            </summary>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.#ctor(System.String)">
+            <summary>
+            base constructor, filePath must be valid system path to a PDF document
+            </summary>
+            <param name="filePath">path of file to load</param>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.getPageCount">
+            <summary>
+            returns total number of pages in the loaded document
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.closeDoc">
+            <summary>
+            closes the loaded document, does not save
+            </summary>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.saveAs(System.String)">
+            <summary>
+            save current loaded document to specificed path, extension must be .pdf or .PDF
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.getWordCountForPage(System.Int32)">
+            <summary>
+            returns the total word count for a specified page
+            </summary>
+            <param name="pageNumber">the 1-based index of the page to get the count for</param>
+            <returns></returns>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.mergePDFS(System.Int32,System.String,System.String,System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>
+            merges current doc with specified file 
+            </summary>
+            <param name="pageToInsertAfter">where to begin inserting specified pages, 0 merges before 1st page of loaded document</param>
+            <param name="pathToInsertFrom">file path to insert pages from</param>
+            <param name="directoryToSaveTo">directory output should be save to, if not saving pass in blank string</param>
+            <param name="startPageForInsertPDF">page start of the insert doc</param>
+            <param name="finalPageForInsertPDF">page end of the doc</param>
+            <param name="saveAsFileName">file name to use to save doc, does not need extension, if not saving pass in blank string</param>
+            <param name="save">indicates if doc should save after merging</param>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.addBlankPageToDoc(System.Int32)">
+            <summary>
+            inserts a blank page after the specified point in the loaded doc, use 0 to indicate insert at the front of the doc
+            </summary>
+            <param name="pageToInsertBlankAfter">1-based page number to insert new page after</param>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.splitPagesFromDocument(System.Int32,System.Int32,System.String)">
+            <summary>
+            splits specified pages from the loaded document
+            </summary>
+            <param name="startPage"></param>
+            <param name="numberOfPagesToSplit"></param>
+            <param name="pathToSaveSplitPages"></param>
+            <returns>true if split was succesfull, false if page range was not valid</returns>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.splitDocument(System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            splits loaded document 
+            </summary>
+            <param name="startPage">page to begin spliting</param>
+            <param name="numberOfPagesToSplit">total number of pages per record to split out</param>
+            <param name="saveToPathBase">base path where to save, _ and record number will be appended to this</param>
+            <param name="formatedRecordNumberLength">total length of the foramted record number to appended</param>
+            <param name="recordStart">which record to begin the count at</param>
+            <returns>recordStart incremented to the total number of records split out of document</returns>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.splitDocumentWithVaryingPageLengths(System.Collections.Generic.Queue{System.Int32},System.String,System.Int32)">
+            <summary>
+            splits the loaded document into new pdf docs based on the counts in the queue
+            </summary>
+            <param name="pageCountQueue">queue to determine how many pages should be split out per record</param>
+            <param name="saveAsPathBase">base path to save each pdf to, _ and record number will be appended to this</param>
+            <param name="formatRecordNumberLength">total length of the foramted record number to appended</param>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.saveToEPS">
+            <summary>
+            saves loaded doc to eps, uses same path and filename as current loaded doc
+            </summary>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.flattenPDF">
+            <summary>
+            flattens the PDF by converting all annotations and fields to text
+            </summary>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.saveToEPS(System.String,System.String)">
+            <summary>
+            saves loaded doc to eps
+            </summary>
+            <param name="directoryToSaveTo">where to save eps files</param>
+            <param name="fileName">filename base for the eps</param>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.saveToPNG">
+            <summary>
+            saves loaded doc to PNG, saves in same directory and with the same name as the loaded doc
+            </summary>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.saveToPNG(System.String,System.String)">
+            <summary>
+            save loaded doc to PNG
+            </summary>
+            <param name="directoryToSaveTo">where to save to</param>
+            <param name="fileName">file name for each PNG</param>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.saveToJPG">
+            <summary>
+            saves loaded doc to JPG, saves in same directory and with the same name as the loaded doc
+            </summary>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.saveToJPG(System.String,System.String)">
+            <summary>
+            saves loaded doc to JPG
+            </summary>
+            <param name="directoryToSaveTo">where to save JPGs</param>
+            <param name="fileName">base name for each JPG saved</param>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.saveToTIFF">
+            <summary>
+            save loaded doc to TIFF, saves in same directory and with the same filename as the loaded doc
+            </summary>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.saveToTIFF(System.String,System.String)">
+            <summary>
+            saves the loaded doc to TIFF
+            </summary>
+            <param name="directoryToSaveTo">directory to save TIFFs to</param>
+            <param name="fileName">filename base for each TIFF</param>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.embedFonts">
+            <summary>
+            run preflight droplet for embeding fonts, saves over the loaded doc
+            </summary>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.convertToGreyScale">
+            <summary>
+            run preflight droplet for covnerting to greyscale, saves over the loaded doc
+            </summary>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.getTextInSpecifiedArea(System.Double,System.Double,System.Double,System.Double,System.Int32)">
+            <summary>
+            returns the text of a page in a specified rectangle 
+            </summary>
+            <param name="left_x_inches">left most x point in inches</param>
+            <param name="right_x_inches">right most x point in inches</param>
+            <param name="top_y_inches">top most y point in inches</param>
+            <param name="bottom_y_inches">bottom most y point in inches</param>
+            <param name="page">page to read</param>
+            <returns>string value of text iside the area of the rectangle</returns>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.findTextOnPage(System.Int32,System.String,System.Boolean)">
+            <summary>
+            determines if the supplied text is within the text of the specified page
+            </summary>
+            <param name="page">the page to search</param>
+            <param name="text">the text to determine if it is present</param>
+            <param name="matchCase">whether the text must match with regardes to letter casing</param>
+            <returns>bool if the text is on the page</returns>
+        </member>
+        <member name="M:Adhoc_Adobe_Library_3_5.PDFDoc.writeTextToForm(System.String,System.Int32,System.String,System.Double,System.Double,System.Double,System.Double,System.Int32)">
+            <summary>
+            creates a field at the specified position and writes the text to the given pt size and font
+            </summary>
+            <param name="text">the text to write</param>
+            <param name="textSize">point size of text</param>
+            <param name="font">desired font</param>
+            <param name="left_x_coord">top left x coord of bounding rectangle</param>
+            <param name="left_y_coord">top left y coord of bounding rectangle</param>
+            <param name="right_x_coord">top right x coord of bounding rectangle</param>
+            <param name="right_y_coord">top right y coord of bounding rectangle</param>
+            <param name="page">the page to right the text to</param>
+        </member>
+        <member name="T:Adhoc_Adobe_Library_3_5.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Adhoc_Adobe_Library_3_5.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Adhoc_Adobe_Library_3_5.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>
